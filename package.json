@@ -1,0 +1,22 @@
+{
+  "name": "recruitbot",
+  "version": "1.0.0",
+  "description": "Recruit bot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marcobustillo/RecruitBot.git"
+  },
+  "keywords": [
+    "recruit"
+  ],
+  "author": "Marco Polo Bustillo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/marcobustillo/RecruitBot/issues"
+  },
+  "homepage": "https://github.com/marcobustillo/RecruitBot#readme"
+}
