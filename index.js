@@ -106,4 +106,4 @@ mongoose.connect(dbUrl, { useNewUrlParser: true })
     })
     .catch(err => console.log(err));
 
-bot.start();
+bot.start(process.env.PORT || 3000);
