@@ -1,4 +1,5 @@
 const download = require("./Uploader")
+const OpportunityModel = require("../models/OpportunityModel")
 
 const getAttachment = (value, id) => {
     download(value.message.attachments[0].payload.url, id)
