@@ -3,7 +3,8 @@ require('dotenv').config()
 const BootBot = require("bootbot")
 const mongoose = require("mongoose");
 const askJobTitle = require("./module/JobOpportunityConversation")
-const download = require("./module/Uploader")
+const askProjectTitle = require("./module/FreelanceOpportunityConversation")
+const askBusiness = require("./module/BusinessOpportunityConversation")
 const OpportunityModel = require("./models/OpportunityModel")
 
 const bot = new BootBot({
@@ -78,7 +79,7 @@ bot.on("postback:BUSINESS", (payload, chat) => {
             type: "business"
         })
         chat.conversation((convo) => {
-            convo.sendTypingIndicator(1000).then(() => askJobTitle(convo, result._id));
+            convo.sendTypingIndicator(1000).then(() => askBusiness(convo, result._id));
         })
     });
 })
@@ -90,7 +91,7 @@ bot.on("postback:FREELANCE", (payload, chat) => {
             type: "freelance"
         })
         chat.conversation((convo) => {
-            convo.sendTypingIndicator(1000).then(() => askJobTitle(convo, result._i));
+            convo.sendTypingIndicator(1000).then(() => askProjectTitle(convo, result._i));
         })
     });
 })
