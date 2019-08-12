@@ -2,6 +2,7 @@ const {
     getAttachment,
     askEmail
 } = require("./Common")
+const OpportunityModel = require("../models/OpportunityModel")
 
 const askProjectTitle = (convo, id) => {
     convo.ask(`What is the Project Title?`, async (payload, convo, data) => {
