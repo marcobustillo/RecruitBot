@@ -22,6 +22,7 @@ bot.setGreetingText([
 
 bot.setGetStartedButton((payload, chat) => {
     chat.getUserProfile().then((user) => {
+        console.log(user)
         chat.say({
             text: `Welcome! ${user.first_name} ${user.last_name} What do you want to do? To open this menu again say hello`,
             buttons: [
