@@ -52,6 +52,16 @@ bot.hear('hello', (payload, chat) => {
     });
 });
 
+bot.hear("resume", (payload, chat) => {
+    chat.say({
+        text: `Here's your request https://drive.google.com/file/d/16I-fV3lEferqtvWb0IHBfYHvfE11MsYy/view?usp=sharing`
+    })
+})
+
+bot.hear("halo", (payload, chat) => {
+    chat.say({ text: "Halo-halo" })
+})
+
 bot.on('postback:OPPORTUNITIES', (payload, chat) => {
     chat.say({
         text: `What opportunity do you have for me?`,
