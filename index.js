@@ -98,8 +98,7 @@ bot.on('postback:TRIVIA', (payload, chat) => {
     request.get("https://opentdb.com/api.php?amount=1", (error, response, body) => {
         console.log('error:', error); // Print the error if one occurred
         console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
-        const { results } = body
-        console.log(results)
+        console.log(body.results)
         if (response.statusCode === 200) chat.say(`${results[0].question} ${results[0].correct_answer}`)
     })
 });
