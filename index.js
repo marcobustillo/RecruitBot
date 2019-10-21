@@ -53,10 +53,7 @@ bot.hear(['hello', 'hi', /hey( there)?/i], (payload, chat) => {
 });
 
 bot.hear("resume", (payload, chat) => {
-    chat.say({
-        text: "Here's your request ",
-        url: "https://drive.google.com/file/d/16I-fV3lEferqtvWb0IHBfYHvfE11MsYy/view?usp=sharing"
-    })
+    chat.say("Here's your request https://drive.google.com/file/d/16I-fV3lEferqtvWb0IHBfYHvfE11MsYy/view?usp=sharing")
 })
 
 bot.hear("halo", (payload, chat) => {
