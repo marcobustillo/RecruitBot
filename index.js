@@ -97,7 +97,11 @@ bot.on('postback:LEARN_MORE', (payload, chat) => {
 bot.on('postback:TRIVIA', (payload, chat) => {
     request.get("https://opentdb.com/api.php?amount=1", (error, response, body) => {
         const { results } = JSON.parse(body)
-        if (response.statusCode === 200) chat.say(`${results[0].question} ${results[0].correct_answer}`)
+        if (response.statusCode === 200) {
+            convo.sendTypingIndicator(1000).then(() =>
+                () =>
+                    chat.say(`${results[0].question} ${results[0].correct_answer}`))
+        }
     })
 });
 
