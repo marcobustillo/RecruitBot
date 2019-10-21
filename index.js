@@ -14,6 +14,12 @@ const bot = new BootBot({
     appSecret: process.env.appSecret
 });
 
+const buttonList = [
+    { type: 'postback', title: 'Learn more about me!', payload: 'LEARN_MORE' },
+    { type: 'postback', title: 'Opportunities?', payload: 'OPPORTUNITIES' },
+    { type: 'postback', title: "Random trivia", payload: "TRIVIA" }
+]
+
 bot.setGreetingText([
     {
         "locale": "default",
@@ -25,11 +31,7 @@ bot.setGetStartedButton((payload, chat) => {
     chat.getUserProfile().then((user) => {
         chat.say({
             text: `Welcome! What do you want to do? To open this menu again say hello`,
-            buttons: [
-                { type: 'postback', title: 'Learn more about me!', payload: 'LEARN_MORE' },
-                { type: 'postback', title: 'Opportunities?', payload: 'OPPORTUNITIES' },
-                { type: 'postback', title: "Random trivia", payload: "TRIVIA" }
-            ]
+            buttons: buttonList
         });
     });
 });
@@ -43,10 +45,7 @@ bot.hear('hello', (payload, chat) => {
     chat.getUserProfile().then((user) => {
         chat.say({
             text: `Hello! What do you want to do? To open this menu again say hello`,
-            buttons: [
-                { type: 'postback', title: 'Opportunities?', payload: 'OPPORTUNITIES' },
-                { type: 'postback', title: 'Learn more about me!', payload: 'LEARN_MORE' }
-            ]
+            buttons: buttonList
         });
     });
 });
