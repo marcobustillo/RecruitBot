@@ -2,6 +2,7 @@
 require('dotenv').config()
 const BootBot = require("bootbot")
 const mongoose = require("mongoose");
+const request = require("request")
 const askJobTitle = require("./module/JobOpportunityConversation")
 const askProjectTitle = require("./module/FreelanceOpportunityConversation")
 const askBusiness = require("./module/BusinessOpportunityConversation")
@@ -25,8 +26,9 @@ bot.setGetStartedButton((payload, chat) => {
         chat.say({
             text: `Welcome! What do you want to do? To open this menu again say hello`,
             buttons: [
+                { type: 'postback', title: 'Learn more about me!', payload: 'LEARN_MORE' },
                 { type: 'postback', title: 'Opportunities?', payload: 'OPPORTUNITIES' },
-                { type: 'postback', title: 'Learn more about me!', payload: 'LEARN_MORE' }
+                { type: 'postback', title: "Random trivia", payload: "TRIVIA" }
             ]
         });
     });
@@ -89,6 +91,13 @@ bot.on("postback:FREELANCE", (payload, chat) => {
 
 bot.on('postback:LEARN_MORE', (payload, chat) => {
     chat.say(`Click the link https://marcobustillo.ml`);
+});
+
+bot.on('postback:TRIVIA', (payload, chat) => {
+    request.get({ url: "https://opentdb.com/api.php?amount=1" }, (response) => {
+        const { results } = response
+        chat.say(`${results[0].question} ${results[0].correct_answer}`)
+    })
 });
 
 const dbUrl = process.env.DB_HOST;
