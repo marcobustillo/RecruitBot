@@ -43,7 +43,7 @@ bot.on('message', (payload, chat) => {
     console.log(`The user said: ${text}`);
 });
 
-bot.hear('hello', (payload, chat) => {
+bot.hear(['hello', 'hi', /hey( there)?/i], (payload, chat) => {
     chat.getUserProfile().then((user) => {
         chat.say({
             text: `Hello! What do you want to do? To open this menu again say hello`,
@@ -54,12 +54,13 @@ bot.hear('hello', (payload, chat) => {
 
 bot.hear("resume", (payload, chat) => {
     chat.say({
-        text: `Here's your request https://drive.google.com/file/d/16I-fV3lEferqtvWb0IHBfYHvfE11MsYy/view?usp=sharing`
+        text: "Here's your request ",
+        url: "https://drive.google.com/file/d/16I-fV3lEferqtvWb0IHBfYHvfE11MsYy/view?usp=sharing"
     })
 })
 
 bot.hear("halo", (payload, chat) => {
-    chat.say({ text: "Halo-halo" })
+    chat.say("Halo-halo", { typing: true })
 })
 
 bot.on('postback:OPPORTUNITIES', (payload, chat) => {
