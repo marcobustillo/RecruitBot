@@ -93,8 +93,10 @@ bot.on('postback:LEARN_MORE', (payload, chat) => {
 });
 
 bot.on('postback:TRIVIA', (payload, chat) => {
-    request.get({ url: "https://opentdb.com/api.php?amount=1" }, (response) => {
-        console.log(response)
+    request.get("https://opentdb.com/api.php?amount=1", (error, response, body) => {
+        console.log('error:', error); // Print the error if one occurred
+        console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+        console.log('body:', body); // P
         //chat.say(`${results[0].question} ${results[0].correct_answer}`)
     })
 });
