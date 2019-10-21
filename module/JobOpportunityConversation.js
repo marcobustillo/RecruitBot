@@ -1,6 +1,6 @@
 const {
     getAttachment,
-    askEmail
+    askName
 } = require("./Common")
 const OpportunityModel = require("../models/OpportunityModel")
 
@@ -52,7 +52,7 @@ const askSalaryBudget = (convo, id) => {
     convo.ask(`How much is your salary budget?`, async (payload, convo, data) => {
         await OpportunityModel.updateOne({ _id: id }, { $set: { budget: payload.message.text } })
         convo.sendTypingIndicator(1000).then(() =>
-            askEmail(convo, id))
+            askName(convo, id))
     })
 }
 

@@ -1,6 +1,6 @@
 const {
     getAttachment,
-    askEmail
+    askName
 } = require("./Common")
 const OpportunityModel = require("../models/OpportunityModel")
 
@@ -38,7 +38,7 @@ const askAdditionalDetails = (convo, id) => {
             getAttachment(payload, id)
         }
         convo.sendTypingIndicator(1000).then(() =>
-            askEmail(convo, id))
+            askName(convo, id))
     })
 }
 

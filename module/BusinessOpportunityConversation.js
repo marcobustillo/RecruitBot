@@ -1,6 +1,6 @@
 const {
     getAttachment,
-    askEmail
+    askName,
 } = require("./Common")
 const OpportunityModel = require("../models/OpportunityModel")
 
@@ -9,7 +9,7 @@ const askBusinessType = (convo, id) => {
         await OpportunityModel.updateOne({ _id: id }, { $set: { title: payload.message.text } })
         convo.sendTypingIndicator(1000).then(() =>
             convo.say("Got it, Please answer the next question").then(
-                () => askCompanyName(convo, id)
+                () => askAdditionalDetails(convo, id)
             ))
     })
 }
@@ -22,7 +22,7 @@ const askAdditionalDetails = (convo, id) => {
             getAttachment(payload, id)
         }
         convo.sendTypingIndicator(1000).then(() =>
-            askEmail(convo, id))
+            askName(convo, id))
     })
 }
 

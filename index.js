@@ -22,9 +22,8 @@ bot.setGreetingText([
 
 bot.setGetStartedButton((payload, chat) => {
     chat.getUserProfile().then((user) => {
-        console.log(user)
         chat.say({
-            text: `Welcome! ${user.first_name} ${user.last_name} What do you want to do? To open this menu again say hello`,
+            text: `Welcome! What do you want to do? To open this menu again say hello`,
             buttons: [
                 { type: 'postback', title: 'Opportunities?', payload: 'OPPORTUNITIES' },
                 { type: 'postback', title: 'Learn more about me!', payload: 'LEARN_MORE' }
@@ -41,7 +40,7 @@ bot.on('message', (payload, chat) => {
 bot.hear('hello', (payload, chat) => {
     chat.getUserProfile().then((user) => {
         chat.say({
-            text: `Hello! ${user.first_name} ${user.last_name} What do you want to do? To open this menu again say hello`,
+            text: `Hello! What do you want to do? To open this menu again say hello`,
             buttons: [
                 { type: 'postback', title: 'Opportunities?', payload: 'OPPORTUNITIES' },
                 { type: 'postback', title: 'Learn more about me!', payload: 'LEARN_MORE' }
@@ -63,10 +62,7 @@ bot.on('postback:OPPORTUNITIES', (payload, chat) => {
 
 bot.on("postback:JOB", (payload, chat) => {
     chat.getUserProfile().then(async (user) => {
-        const result = await OpportunityModel.create({
-            name: `${user.first_name} ${user.last_name}`,
-            type: "job"
-        })
+        const result = await OpportunityModel.create({ type: "job" })
         chat.conversation((convo) => {
             convo.sendTypingIndicator(1000).then(() => askJobTitle(convo, result._id));
         })
@@ -75,10 +71,7 @@ bot.on("postback:JOB", (payload, chat) => {
 
 bot.on("postback:BUSINESS", (payload, chat) => {
     chat.getUserProfile().then(async (user) => {
-        const result = await OpportunityModel.create({
-            name: `${user.first_name} ${user.last_name}`,
-            type: "business"
-        })
+        const result = await OpportunityModel.create({ type: "business" })
         chat.conversation((convo) => {
             convo.sendTypingIndicator(1000).then(() => askBusiness(convo, result._id));
         })
@@ -87,10 +80,7 @@ bot.on("postback:BUSINESS", (payload, chat) => {
 
 bot.on("postback:FREELANCE", (payload, chat) => {
     chat.getUserProfile().then(async (user) => {
-        const result = await OpportunityModel.create({
-            name: `${user.first_name} ${user.last_name}`,
-            type: "freelance"
-        })
+        const result = await OpportunityModel.create({ type: "freelance" })
         chat.conversation((convo) => {
             convo.sendTypingIndicator(1000).then(() => askProjectTitle(convo, result._i));
         })
